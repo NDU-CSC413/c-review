@@ -1,20 +1,46 @@
-// pointers.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-/* TODO */
 #include <iostream>
 
+#define EX2 //basics
+
+#ifdef EX1
 int main()
 {
-    std::cout << "Hello World!\n";
+    const int n = 8;
+    int a[n];
+    for (int i = 0; i < n; ++i)a[i] = i;
+    int x = 12;
+    int* p = &x;
+    *p = 15;
+    std::cout << x << "\n";
+    p = a;
+    p += 4;
+    *p = 99;
+    *++p = 100;
+    p = a;
+    *p++ = 101;
+    for (int i = 0; i < n; ++i)
+        std::cout << a[i] << ",";
+    std::cout << "\n";
+}
+#endif // EX1
+#ifdef EX2
+
+int main() {
+    int n = 8;
+    int* p;
+    p = new int[8];
+
+    /* p IS a variable
+    * so we make a copy
+    * before changing it
+    */
+    for (int i = 0,*q=p; i < n; ++i,++q)
+        *q = i;
+
+    for (int i = 0; i < n; ++i)
+        std::cout << p[i] << ",";
+    std::cout << "\n";
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+#endif // EX2
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

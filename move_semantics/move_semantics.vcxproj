@@ -48,7 +48,7 @@
     <ProjectGuid>{a367e0cc-f2ab-4f0e-b22f-eb686eeb1ed4}</ProjectGuid>
     <RootNamespace>movesemantics</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>5move_semantics</ProjectName>
+    <ProjectName>50move_semantics</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
