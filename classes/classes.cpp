@@ -1,5 +1,5 @@
 #include <iostream>
-/* member variables and functions,initialization, accessibility qualifiers */
+/*   member variables and functions,initialization, accessibility qualifiers */
 class Test {
 	int _x;
 public: int& x() {return _x;}
