@@ -1,5 +1,6 @@
 #include <iostream>
 
+
 #define EX2
 #ifdef EX1
 //some change
