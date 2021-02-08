@@ -2,7 +2,7 @@
 
 #define EX2
 #ifdef EX1
-
+//some change
 
 int main() {
 	//a location in memory is reserved and labeled x
