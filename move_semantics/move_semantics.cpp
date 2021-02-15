@@ -4,15 +4,17 @@
 #include <vector>
 #include <initializer_list>
 #include <type_traits>
-//#define RVALR//rvalue reference
+#define RVALR//rvalue reference
 //#define PASS_ERROR //move semantics are not passed through
 //#define PASS_OK
 //#define TRANSF1 //transfer of ownership: std::string
 //#define TRANSF2//transfer of ownership: std::vector
-#define RVALR//move assignment and move constructor
+//#define MOVE_TOR //move assignment and move constructor
 
 
 #ifdef RVALR
+int y = 14;
+int byValue() { return y; }
 void f(const int& x) {
     std::cout << "using const int&\n";
 }
@@ -21,11 +23,11 @@ void f(int&& x) {
 }
 int main()
 {
-
     int x = 8;
     f(x);
     f(12);
     f(std::move(x));
+    f(byValue());
 }
 #endif 
 
@@ -79,6 +81,8 @@ int main() {
         else std::cout << "none\n";
     }
     auto&& value = byVal();
+    int x = 12;
+    decltype(x) y;
     if (std::is_same_v<decltype(value), int&>)std::cout << "int&\n";
     else if (std::is_same_v<decltype(value), int&&>)std::cout << "int&&\n";
     else std::cout << "none\n";
@@ -134,6 +138,7 @@ struct Container {
 };
 int main() {
     Container c{ 1,2,3,4 };
+
     std::cout << "initial values of container c: ";
     c.print();
     Container d = std::move(c);

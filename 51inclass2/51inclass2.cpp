@@ -1,7 +1,7 @@
 
 #include <iostream>
 /* Make the Container class
-* moveable but copyable
+* moveable but not copyable
 *
 */
 
@@ -64,6 +64,7 @@ int main()
 	c.resize(12);
 	
 	/* use move ctor d of c */
+	//Container d = c;// error
 	Container d = std::move(c);//move ctor
 	if(c.size()>0)
 		std::cout << "c[0]=" << c[0] << "\n";

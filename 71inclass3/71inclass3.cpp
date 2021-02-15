@@ -1,5 +1,8 @@
 
 #include <iostream>
+/* TODO: this is not even started
+* find another exercise
+*/
 /* create a class Container
 * 1. It has a size
 * 2. uses a int array for storage
