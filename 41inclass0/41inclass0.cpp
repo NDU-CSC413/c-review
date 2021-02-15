@@ -10,6 +10,50 @@
 *    Does NOT decrease the size
 * 
 */
+
+struct  Container {
+	int _size=0;
+	int* _data=nullptr;
+	Container() {}
+	Container(int size) :_size(size),_data(new int[size]) {}
+	Container & operator=(const Container& rhs) {
+		_size = rhs._size;
+		delete[] _data;
+		_data = new int[_size];
+
+		for (int i = 0; i < rhs.size(); ++i)
+			_data[i] = rhs._data[i];
+		return *this;
+	}
+	int& operator[](int idx) {
+		return _data[idx];
+	}
+	int size() const {
+		return _size;
+	}
+	~Container() {
+		if (_data != nullptr)delete[] _data;
+	}
+};
+#include <string>
+int main() {
+	Container e;
+
+	std::cout << e._size << "\n";
+	//Container n(10);
+	//for (int i = 0; i < n.size(); ++i)n[i] = i;
+	//Container a(10),b(20);
+	//b=(a = n);//b.operator=(a.operator=(n))
+	////a._data=n._data;
+	//n[0] = 99;
+	//std::cout << a[0] << "\n";
+	
+}
+
+
+#define INCLASS
+#ifndef INCLASS
+
 class Container {
 	int _size;
 	int* _data;
@@ -53,3 +97,4 @@ int main()
 
 }
 
+#endif // !INCLASS
