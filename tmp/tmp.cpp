@@ -8,19 +8,39 @@
 #define Q(x) #x
 #define QUOTE(x) Q(x)
 
-struct tmp {
-	int _size, _twice;
-	tmp(int size) :_size(size), _twice(2 * _size) {
-	}
-	int& twice() {
-		return _twice;
-	}
 
+struct Test {
+    int _x;
+    Test(int x = 0) :_x(x) {
+        std::cout << "created" << _x << "\n";
+
+    }
+    ~Test() {
+        std::cout << "dtor " << _x << std::endl;
+    }
 };
-int main() {
-	tmp t{ 3 };
-	std::cout << t.twice() << "\n";
+Test RT(int val) {
+    return Test(val);
 }
+int main() {
+     Test&& rr=RT(8);
+    RT(7);
+    std::cout << " done\n";
+}
+//
+//struct tmp {
+//	int _size, _twice;
+//	tmp(int size) :_size(size), _twice(2 * _size) {
+//	}
+//	int& twice() {
+//		return _twice;
+//	}
+//
+//};
+//int main() {
+//	tmp t{ 3 };
+//	std::cout << t.twice() << "\n";
+//}
 //#include "../../hw1-sol/utility.h"
 //static const int length = (1<<24)*8;
 //static float a[length];

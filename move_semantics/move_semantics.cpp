@@ -4,11 +4,11 @@
 #include <vector>
 #include <initializer_list>
 #include <type_traits>
-#define RVALR//rvalue reference
+//#define RVALR//rvalue reference
 //#define PASS_ERROR //move semantics are not passed through
 //#define PASS_OK
 //#define TRANSF1 //transfer of ownership: std::string
-//#define TRANSF2//transfer of ownership: std::vector
+#define TRANSF2//transfer of ownership: std::vector
 //#define MOVE_TOR //move assignment and move constructor
 
 
@@ -32,14 +32,21 @@ int main()
 #endif 
 
 #ifdef PASS_ERROR
-void f(std::string&& s) {
+void f(std::string& s) {
+    std::cout << "choosing std::string&\n";
+}
+void f(std::string&& s) {// rvalues are not passed
+    std::cout << "calling string&&\n";
     if (s != "hello") {
         s = "hello";//to avoid infinite recursion
-        f(s);
+        f(std::move(s));
     }
 }
 
+
 int main() {
+    std::string s = "not hello";
+   // f(s);
     f("not hello");
 }
 #endif
@@ -71,15 +78,18 @@ int main() {
     std::vector<int> v{ 1,2,3 };
     std::vector<int> u;
     u = std::move(v);
-    std::cout << "content of v\n";
+    std::vector<int>::iterator itr;
+   
+  /*  std::cout << "content of v\n";
+    
     for (auto& x : v)std::cout << x << ","; std::cout << "\n";
     std::cout << "content of u\n";
-    for (auto& x : u) { std::cout << x << ","; } std::cout << "\n";
-    for (auto&& x : u) {
+    for (auto& x : u) { std::cout << x << ","; } std::cout << "\n";*/
+    /*for (auto&& x : u) {
         if (std::is_same_v<decltype(x), int&>)std::cout << "int&\n";
         else if (std::is_same_v<decltype(x), int&&>)std::cout << "int&&\n";
         else std::cout << "none\n";
-    }
+    }*/
     auto&& value = byVal();
     int x = 12;
     decltype(x) y;
